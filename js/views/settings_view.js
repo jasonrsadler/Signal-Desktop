@@ -176,6 +176,7 @@
         spellCheckDirtyText: appStartSpellCheck
           ? i18n('spellCheckWillBeDisabled')
           : i18n('spellCheckWillBeEnabled'),
+          set24HourDescription: i18n('set24HourDescription')
       };
     },
     onClose() {

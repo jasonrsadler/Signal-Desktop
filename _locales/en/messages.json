@@ -2311,5 +2311,9 @@
   "ReactionsViewer--all": {
     "message": "All",
     "description": "Shown in reaction viewer as the title for the 'all' category"
+  },
+  "set24HourDescription": {
+    "message": "Use 24 hour time format for messages",
+    "description": "Determines time format shown for messages"
   }
 }

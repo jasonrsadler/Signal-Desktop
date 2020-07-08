@@ -7,10 +7,10 @@ function replaceSuffix(time: string) {
   return time.replace(/ PM$/, 'pm').replace(/ AM$/, 'am');
 }
 
-const getExtendedFormats = (i18n: LocalizerType) => ({
+const getExtendedFormats = (i18n: LocalizerType, tfHour: boolean) => ({
   y: 'lll',
-  M: `${i18n('timestampFormat_M') || 'MMM D'} LT`,
-  d: 'ddd LT',
+  M: `${i18n('timestampFormat_M') || 'MMM D'} ${tfHour ? 'HH:mm' : 'LT'}`,
+  d: tfHour ? 'ddd HH:mm' : 'ddd LT',
 });
 const getShortFormats = (i18n: LocalizerType) => ({
   y: 'll',
@@ -34,21 +34,22 @@ function isYear(timestamp: moment.Moment) {
 
 export function formatRelativeTime(
   rawTimestamp: number | Date,
-  options: { extended?: boolean; i18n: LocalizerType }
+  options: { extended?: boolean; i18n: LocalizerType; is24Hour?: boolean; }
 ) {
+  console.log(rawTimestamp)
   const { extended, i18n } = options;
 
-  const formats = extended ? getExtendedFormats(i18n) : getShortFormats(i18n);
+  const formats = extended ? getExtendedFormats(i18n, true) : getShortFormats(i18n);
   const timestamp = moment(rawTimestamp);
   const now = moment();
   const diff = moment.duration(now.diff(timestamp));
 
   if (diff.years() >= 1 || !isYear(timestamp)) {
-    return replaceSuffix(timestamp.format(formats.y));
+    return '1 ' + replaceSuffix(timestamp.format(formats.y));
   } else if (diff.months() >= 1 || diff.days() > 6) {
-    return replaceSuffix(timestamp.format(formats.M));
+    return '2 ' + replaceSuffix(timestamp.format(formats.M));
   } else if (diff.days() >= 1 || !isToday(timestamp)) {
-    return replaceSuffix(timestamp.format(formats.d));
+    return '3 ' + replaceSuffix(timestamp.format(formats.d));
   } else if (diff.hours() >= 1) {
     return i18n('hoursAgo', [String(diff.hours())]);
   } else if (diff.minutes() >= 1) {

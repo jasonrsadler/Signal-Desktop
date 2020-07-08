@@ -16,6 +16,7 @@ interface Props {
   withUnread?: boolean;
   direction?: 'incoming' | 'outgoing';
   i18n: LocalizerType;
+  is24Hour?: boolean;
 }
 
 const UPDATE_FREQUENCY = 60 * 1000;
@@ -55,6 +56,7 @@ export class Timestamp extends React.Component<Props> {
       withTapToViewExpired,
       withUnread,
       extended,
+      is24Hour
     } = this.props;
     const moduleName = module || 'module-timestamp';
 
@@ -76,7 +78,7 @@ export class Timestamp extends React.Component<Props> {
         )}
         title={moment(timestamp).format('llll')}
       >
-        {formatRelativeTime(timestamp, { i18n, extended })}
+        {formatRelativeTime(timestamp, { i18n, extended, is24Hour })}
       </span>
     );
   }
