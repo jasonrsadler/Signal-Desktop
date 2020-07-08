@@ -55,6 +55,9 @@ window.setHideMenuBar = makeSetter('hide-menu-bar');
 window.getSpellCheck = makeGetter('spell-check');
 window.setSpellCheck = makeSetter('spell-check');
 
+window.getTimeFormat = makeGetter('time-format');
+window.setTimeFormat = makeSetter('time-format');
+
 window.getNotificationSetting = makeGetter('notification-setting');
 window.setNotificationSetting = makeSetter('notification-setting');
 window.getAudioNotification = makeGetter('audio-notification');

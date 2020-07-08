@@ -13,7 +13,7 @@
 */
 
 // eslint-disable-next-line func-names
-(async function() {
+(async function () {
   'use strict';
 
   const eventHandlerQueue = new window.PQueue({ concurrency: 1 });
@@ -371,6 +371,11 @@
       getSpellCheck: () => storage.get('spell-check', true),
       setSpellCheck: value => {
         storage.put('spell-check', value);
+      },
+
+      getTimeFormat: () => storage.get('time-format', true),
+      setTimeFormat: value => {
+        storage.put('time-format', value);
       },
 
       // eslint-disable-next-line eqeqeq

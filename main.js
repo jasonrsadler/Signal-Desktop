@@ -1245,6 +1245,9 @@ installSettingsSetter('audio-notification');
 installSettingsGetter('spell-check');
 installSettingsSetter('spell-check');
 
+installSettingsGetter('time-format');
+installSettingsSetter('time-format');
+
 // This one is different because its single source of truth is userConfig, not IndexedDB
 ipc.on('get-media-permissions', event => {
   event.sender.send(
@@ -1375,10 +1378,10 @@ async function ensureFilePermissions(onlyFiles) {
   const files = onlyFiles
     ? onlyFiles.map(f => path.join(userDataPath, f))
     : await fg(userDataGlob, {
-        markDirectories: true,
-        onlyFiles: false,
-        ignore: ['**/Singleton*'],
-      });
+      markDirectories: true,
+      onlyFiles: false,
+      ignore: ['**/Singleton*'],
+    });
 
   console.log(`Ensuring file permissions for ${files.length} files`);
 

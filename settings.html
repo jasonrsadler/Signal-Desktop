@@ -1,7 +1,7 @@
 <html>
+
 <head>
-  <meta http-equiv="Content-Security-Policy"
-    content="default-src 'none';
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none';
             child-src 'self';
             connect-src 'self' https: wss:;
             font-src 'self';
@@ -11,13 +11,13 @@
             media-src 'self' blob:;
             object-src 'none';
             script-src 'self';
-            style-src 'self' 'unsafe-inline';"
-  >
+            style-src 'self' 'unsafe-inline';">
   <link href="node_modules/sanitize.css/sanitize.css" rel="stylesheet" type="text/css" />
   <link href="stylesheets/manifest.css" rel="stylesheet" type="text/css" />
-<style>
-</style>
+  <style>
+  </style>
 </head>
+
 <body>
 </body>
 <script type='text/x-tmpl-mustache' id='syncSettings'>
@@ -97,9 +97,9 @@
     {{ /isAudioNotificationSupported }}
     <hr>
       <h3>{{ generalHeader }}</h3>
-      <div class='set-24-hour-setting'>
-        <input type='checkbox' name='set-24-hour-setting' id='set-24-hour-setting' />
-        <label for='set-24-hour-setting'>{{ set24HourDescription }}</label>
+      <div class='time-format-setting'>
+        <input type='checkbox' name='time-format-setting' id='time-format-setting' />
+        <label for='time-format-setting'>{{ set24HourDescription }}</label>
       </div><br>
       <div class='spell-check-setting'>
         <input type='checkbox' name='spell-check-setting' id='spell-check-setting' />
@@ -131,4 +131,5 @@
 <script type='text/javascript' src='js/views/whisper_view.js'></script>
 <script type='text/javascript' src='js/views/settings_view.js'></script>
 <script type='text/javascript' src='js/settings_start.js'></script>
+
 </html>

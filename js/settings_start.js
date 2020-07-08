@@ -39,6 +39,8 @@ const getInitialData = async () => ({
 
   spellCheck: await window.getSpellCheck(),
 
+  timeFormat: await window.getTimeFormat(),
+
   mediaPermissions: await window.getMediaPermissions(),
 
   isPrimary: await window.isPrimary(),

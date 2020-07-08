@@ -5,7 +5,7 @@
 /* eslint-disable no-new */
 
 // eslint-disable-next-line func-names
-(function() {
+(function () {
   'use strict';
 
   window.Whisper = window.Whisper || {};
@@ -118,6 +118,12 @@
           window.setSpellCheck(val);
         },
       });
+      new CheckboxView({
+        el: this.$('.time-format-setting'),
+        name: 'time-format-setting',
+        value: window.initialData.timeFormat,
+        setFn: window.setTimeFormat,
+      });
       if (Settings.isHideMenuBarSupported()) {
         new CheckboxView({
           el: this.$('.menu-bar-setting'),
@@ -176,7 +182,7 @@
         spellCheckDirtyText: appStartSpellCheck
           ? i18n('spellCheckWillBeDisabled')
           : i18n('spellCheckWillBeEnabled'),
-          set24HourDescription: i18n('set24HourDescription')
+        set24HourDescription: i18n('set24HourDescription')
       };
     },
     onClose() {

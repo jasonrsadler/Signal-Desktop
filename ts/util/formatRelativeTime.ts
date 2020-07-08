@@ -7,7 +7,7 @@ function replaceSuffix(time: string) {
   return time.replace(/ PM$/, 'pm').replace(/ AM$/, 'am');
 }
 
-const getExtendedFormats = (i18n: LocalizerType, tfHour: boolean) => ({
+const getExtendedFormats = (i18n: LocalizerType, tfHour?: boolean) => ({
   y: 'lll',
   M: `${i18n('timestampFormat_M') || 'MMM D'} ${tfHour ? 'HH:mm' : 'LT'}`,
   d: tfHour ? 'ddd HH:mm' : 'ddd LT',
@@ -34,12 +34,12 @@ function isYear(timestamp: moment.Moment) {
 
 export function formatRelativeTime(
   rawTimestamp: number | Date,
-  options: { extended?: boolean; i18n: LocalizerType; is24Hour?: boolean; }
+  options: { extended?: boolean; i18n: LocalizerType; timeFormat?: boolean; }
 ) {
-  console.log(rawTimestamp)
+  console.log('time: ', options.timeFormat)
   const { extended, i18n } = options;
 
-  const formats = extended ? getExtendedFormats(i18n, true) : getShortFormats(i18n);
+  const formats = extended ? getExtendedFormats(i18n, options.timeFormat) : getShortFormats(i18n);
   const timestamp = moment(rawTimestamp);
   const now = moment();
   const diff = moment.duration(now.diff(timestamp));

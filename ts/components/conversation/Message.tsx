@@ -434,17 +434,17 @@ export class Message extends React.PureComponent<Props, State> {
             {i18n('sendFailed')}
           </span>
         ) : (
-          <Timestamp
-            i18n={i18n}
-            timestamp={timestamp}
-            extended={true}
-            direction={metadataDirection}
-            withImageNoCaption={withImageNoCaption}
-            withSticker={isSticker}
-            withTapToViewExpired={isTapToViewExpired}
-            module="module-message__metadata__date"
-          />
-        )}
+            <Timestamp
+              i18n={i18n}
+              timestamp={timestamp}
+              extended={true}
+              direction={metadataDirection}
+              withImageNoCaption={withImageNoCaption}
+              withSticker={isSticker}
+              withTapToViewExpired={isTapToViewExpired}
+              module="module-message__metadata__date"
+            />
+          )}
         {expirationLength && expirationTimestamp ? (
           <ExpireTimer
             direction={metadataDirection}
@@ -643,21 +643,21 @@ export class Message extends React.PureComponent<Props, State> {
               <Spinner svgSize="small" size="24px" direction={direction} />
             </div>
           ) : (
-            <div className="module-message__generic-attachment__icon-container">
-              <div className="module-message__generic-attachment__icon">
-                {extension ? (
-                  <div className="module-message__generic-attachment__icon__extension">
-                    {extension}
+              <div className="module-message__generic-attachment__icon-container">
+                <div className="module-message__generic-attachment__icon">
+                  {extension ? (
+                    <div className="module-message__generic-attachment__icon__extension">
+                      {extension}
+                    </div>
+                  ) : null}
+                </div>
+                {isDangerous ? (
+                  <div className="module-message__generic-attachment__icon-dangerous-container">
+                    <div className="module-message__generic-attachment__icon-dangerous" />
                   </div>
                 ) : null}
               </div>
-              {isDangerous ? (
-                <div className="module-message__generic-attachment__icon-dangerous-container">
-                  <div className="module-message__generic-attachment__icon-dangerous" />
-                </div>
-              ) : null}
-            </div>
-          )}
+            )}
           <div className="module-message__generic-attachment__text">
             <div
               className={classNames(
@@ -820,11 +820,11 @@ export class Message extends React.PureComponent<Props, State> {
     const clickHandler = disableScroll
       ? undefined
       : () => {
-          scrollToQuotedMessage({
-            author: quote.authorId,
-            sentAt: quote.sentAt,
-          });
-        };
+        scrollToQuotedMessage({
+          author: quote.authorId,
+          sentAt: quote.sentAt,
+        });
+      };
 
     return (
       <Quote
@@ -951,8 +951,8 @@ export class Message extends React.PureComponent<Props, State> {
     const contents = deletedForEveryone
       ? i18n('message--deletedForEveryone')
       : direction === 'incoming' && status === 'error'
-      ? i18n('incomingError')
-      : text;
+        ? i18n('incomingError')
+        : text;
 
     if (!contents) {
       return null;
@@ -1023,20 +1023,20 @@ export class Message extends React.PureComponent<Props, State> {
 
     const downloadButton =
       !isSticker &&
-      !multipleAttachments &&
-      !isTapToView &&
-      firstAttachment &&
-      !firstAttachment.pending ? (
-        <div
-          onClick={this.openGenericAttachment}
-          // This a menu meant for mouse use only
-          role="button"
-          className={classNames(
-            'module-message__buttons__download',
-            `module-message__buttons__download--${direction}`
-          )}
-        />
-      ) : null;
+        !multipleAttachments &&
+        !isTapToView &&
+        firstAttachment &&
+        !firstAttachment.pending ? (
+          <div
+            onClick={this.openGenericAttachment}
+            // This a menu meant for mouse use only
+            role="button"
+            className={classNames(
+              'module-message__buttons__download',
+              `module-message__buttons__download--${direction}`
+            )}
+          />
+        ) : null;
 
     const reactButton = (
       <Reference>
@@ -1171,19 +1171,19 @@ export class Message extends React.PureComponent<Props, State> {
     const menu = (
       <ContextMenu id={triggerId}>
         {!isSticker &&
-        !multipleAttachments &&
-        !isTapToView &&
-        attachments &&
-        attachments[0] ? (
-          <MenuItem
-            attributes={{
-              className: 'module-message__context__download',
-            }}
-            onClick={this.openGenericAttachment}
-          >
-            {i18n('downloadAttachment')}
-          </MenuItem>
-        ) : null}
+          !multipleAttachments &&
+          !isTapToView &&
+          attachments &&
+          attachments[0] ? (
+            <MenuItem
+              attributes={{
+                className: 'module-message__context__download',
+              }}
+              onClick={this.openGenericAttachment}
+            >
+              {i18n('downloadAttachment')}
+            </MenuItem>
+          ) : null}
         {canReply ? (
           <>
             <MenuItem
@@ -1355,16 +1355,16 @@ export class Message extends React.PureComponent<Props, State> {
         <Spinner svgSize="small" size="20px" direction={direction} />
       </div>
     ) : (
-      <div
-        className={classNames(
-          'module-message__tap-to-view__icon',
-          `module-message__tap-to-view__icon--${direction}`,
-          isTapToViewExpired
-            ? 'module-message__tap-to-view__icon--expired'
-            : null
-        )}
-      />
-    );
+        <div
+          className={classNames(
+            'module-message__tap-to-view__icon',
+            `module-message__tap-to-view__icon--${direction}`,
+            isTapToViewExpired
+              ? 'module-message__tap-to-view__icon--expired'
+              : null
+          )}
+        />
+      );
   }
 
   public renderTapToViewText() {
@@ -1379,10 +1379,10 @@ export class Message extends React.PureComponent<Props, State> {
     const incomingString = isTapToViewExpired
       ? i18n('Message--tap-to-view-expired')
       : i18n(
-          `Message--tap-to-view--incoming${
-            isVideo(attachments) ? '-video' : ''
-          }`
-        );
+        `Message--tap-to-view--incoming${
+        isVideo(attachments) ? '-video' : ''
+        }`
+      );
     const outgoingString = i18n('Message--tap-to-view--outgoing');
     const isDownloadPending = this.isAttachmentPending();
 
@@ -1393,8 +1393,8 @@ export class Message extends React.PureComponent<Props, State> {
     return isTapToViewError
       ? i18n('incomingError')
       : direction === 'outgoing'
-      ? outgoingString
-      : incomingString;
+        ? outgoingString
+        : incomingString;
   }
 
   public renderTapToView() {
@@ -1649,22 +1649,22 @@ export class Message extends React.PureComponent<Props, State> {
                         +{maybeNotRenderedTotal}
                       </span>
                     ) : (
-                      <React.Fragment>
-                        <Emoji size={16} emoji={re.emoji} />
-                        {re.count > 1 ? (
-                          <span
-                            className={classNames(
-                              'module-message__reactions__reaction__count',
-                              re.isMe
-                                ? 'module-message__reactions__reaction__count--is-me'
-                                : null
-                            )}
-                          >
-                            {re.count}
-                          </span>
-                        ) : null}
-                      </React.Fragment>
-                    )}
+                        <React.Fragment>
+                          <Emoji size={16} emoji={re.emoji} />
+                          {re.count > 1 ? (
+                            <span
+                              className={classNames(
+                                'module-message__reactions__reaction__count',
+                                re.isMe
+                                  ? 'module-message__reactions__reaction__count--is-me'
+                                  : null
+                              )}
+                            >
+                              {re.count}
+                            </span>
+                          ) : null}
+                        </React.Fragment>
+                      )}
                   </button>
                 );
               })}

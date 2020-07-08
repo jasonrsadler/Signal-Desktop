@@ -139,6 +139,9 @@ try {
   installGetter('spell-check', 'getSpellCheck');
   installSetter('spell-check', 'setSpellCheck');
 
+  installGetter('time-format', 'getTimeFormat');
+  installSetter('time-format', 'setTimeFormat');
+
   window.getMediaPermissions = () =>
     new Promise((resolve, reject) => {
       ipc.once('get-success-media-permissions', (_event, error, value) => {
@@ -239,7 +242,7 @@ try {
 
   // Linux seems to periodically let the event loop stop, so this is a global workaround
   setInterval(() => {
-    window.nodeSetImmediate(() => {});
+    window.nodeSetImmediate(() => { });
   }, 1000);
 
   const { autoOrientImage } = require('./js/modules/auto_orient_image');

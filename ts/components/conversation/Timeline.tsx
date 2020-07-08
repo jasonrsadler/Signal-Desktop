@@ -13,6 +13,7 @@ import { LocalizerType } from '../../types/Util';
 
 import { PropsActions as MessageActionsType } from './Message';
 import { PropsActions as SafetyNumberActionsType } from './SafetyNumberNotification';
+import { getItems } from '../../state/selectors/user';
 
 const AT_BOTTOM_THRESHOLD = 15;
 const NEAR_BOTTOM_THRESHOLD = 15;
@@ -41,6 +42,7 @@ type PropsHousekeepingType = {
   unreadCount?: number;
   typingContact?: Object;
   selectedMessageId?: string;
+  timeFormat?: boolean
 
   i18n: LocalizerType;
 
@@ -138,7 +140,7 @@ export class Timeline extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-
+    console.log('PROPS: ', props)
     const { scrollToIndex } = this.props;
     const oneTimeScrollRow = this.getLastSeenIndicatorRow();
 
@@ -418,7 +420,7 @@ export class Timeline extends React.PureComponent<Props, State> {
         loadNewerMessages,
         markMessageRead,
       } = this.props;
-
+      console.log('ITEMS: ', getItems)
       if (!items || items.length < 1) {
         return;
       }
@@ -450,14 +452,14 @@ export class Timeline extends React.PureComponent<Props, State> {
       const lastItemRow = this.fromItemIndexToRow(lastIndex);
       const areUnreadBelowCurrentPosition = Boolean(
         isNumber(unreadCount) &&
-          unreadCount > 0 &&
-          (!haveNewest || newest.row < lastItemRow)
+        unreadCount > 0 &&
+        (!haveNewest || newest.row < lastItemRow)
       );
 
       const shouldShowScrollDownButton = Boolean(
         !haveNewest ||
-          areUnreadBelowCurrentPosition ||
-          newest.row < rowCount - SCROLL_DOWN_BUTTON_THRESHOLD
+        areUnreadBelowCurrentPosition ||
+        newest.row < rowCount - SCROLL_DOWN_BUTTON_THRESHOLD
       );
 
       this.setState({
